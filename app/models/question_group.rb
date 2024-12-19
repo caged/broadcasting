@@ -1,0 +1,2 @@
+class QuestionGroup < ApplicationRecord
+end
