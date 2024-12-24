@@ -6,12 +6,9 @@
 
     <% content_for :title, "Questions" %>
 
-    <div class="flex justify-between items-center mb-10 ">
-      <h1 class="font-bold text-4xl">Questions</h1>
-      <%= link_to "New question", new_question_group_question_path(@question_group), class: "rounded-lg py-3 px-5 bg-blue-600 text-white block font-medium" %>
-    </div>
+    <h1 class="mb-5 font-bold text-3xl">Questions</h1>
 
-    <div id="questions" class="space-y-5">
+    <div id="<%= dom_id(@question_group, :questions) %>" class="space-y-5">
       <% @questions.each do |question| %>
         <%= render question %>
       <% end %>

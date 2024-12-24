@@ -1,3 +1,6 @@
+<%= turbo_stream_from @question_group %>
+<%= console %>
+
 <div class="mb-10">
   <% if notice.present? %>
     <p class="py-2 px-3 bg-green-50 mb-5 text-green-500 font-medium rounded-lg inline-block" id="notice"><%= notice %></p>
@@ -13,3 +16,8 @@
 </div>
 
 <%= turbo_frame_tag @question_group, src: question_group_questions_path(@question_group) %>
+
+<div class="mt-10 border-t-2 border-gray-500">
+  <%= turbo_frame_tag dom_id(@question_group, :new_question), 
+    src: new_question_group_question_path(@question_group) %>
+</div>

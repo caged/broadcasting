@@ -1,4 +1,4 @@
-<%= form_with(model: [@question_group, question], class: "contents") do |form| %>
+<%= form_with(model: [@question_group, question], class: "py-5") do |form| %>
   <% if question.errors.any? %>
     <div id="error_explanation" class="bg-red-50 text-red-500 px-3 py-2 font-medium rounded-lg mt-3">
       <h2><%= pluralize(question.errors.count, "error") %> prohibited this question from being saved:</h2>
@@ -11,22 +11,24 @@
     </div>
   <% end %>
 
-  <div class="my-5">
-    <%= form.label :label %>
-    <%= form.text_field :label, class: "block shadow rounded-md border border-gray-400 outline-none px-3 py-2 mt-2 w-full" %>
+  <div class="flex gap-5 mb-5 *:flex-1">
+    <div class="">
+      <%= form.label :label %>
+      <%= form.text_field :label, class: "block shadow rounded-md border border-gray-400 outline-none px-3 py-2 mt-2 w-full" %>
+    </div>
+
+    <div class="">
+      <%= form.label :kind %>
+      <%= form.select :kind, Question.kinds.keys, {}, class: "block shadow rounded-md border border-gray-400 outline-none px-3 py-2 mt-2 w-full" %>
+    </div>
   </div>
 
-  <div class="my-5">
-    <%= form.label :kind %>
-    <%= form.select :kind, Question.kinds.keys, {}, class: "block shadow rounded-md border border-gray-400 outline-none px-3 py-2 mt-2 w-full" %>
-  </div>
-
-  <div class="my-5">
+  <div class="">
     <%= form.label :value %>
     <%= form.text_field :value, class: "block shadow rounded-md border border-gray-400 outline-none px-3 py-2 mt-2 w-full" %>
   </div>
 
-  <div class="inline">
+  <div class="mt-5">
     <%= form.submit class: "rounded-lg py-3 px-5 bg-blue-600 text-white inline-block font-medium cursor-pointer" %>
   </div>
 <% end %>

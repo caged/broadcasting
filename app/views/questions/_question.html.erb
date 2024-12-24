@@ -1,4 +1,6 @@
 <div id="<%= dom_id question %>" class="p-5 border rounded-lg">
+  <%= button_to 'X', question_group_question_path(@question_group, question), method: :delete  %>
+
   <%= form_with model: [@question_group, question] do |form| %>
     <%= form.label question.label, class: 'block mb-2 font-bold' %>
     <%= render "questions/inputs/#{question.kind}", question: question, form: form %>
