@@ -1,22 +1,6 @@
-<div id="<%= dom_id question %>">
-  <p class="my-5">
-    <strong class="block font-medium mb-1">Label:</strong>
-    <%= question.label %>
-  </p>
-
-  <p class="my-5">
-    <strong class="block font-medium mb-1">Kind:</strong>
-    <%= question.kind %>
-  </p>
-
-  <p class="my-5">
-    <strong class="block font-medium mb-1">Value:</strong>
-    <%= question.value %>
-  </p>
-
-  <p class="my-5">
-    <strong class="block font-medium mb-1">Question group:</strong>
-    <%= question.question_group_id %>
-  </p>
-
+<div id="<%= dom_id question %>" class="p-5 border rounded-lg">
+  <%= form_with model: [@question_group, question] do |form| %>
+    <%= form.label question.label, class: 'block mb-2 font-bold' %>
+    <%= render "questions/inputs/#{question.kind}", question: question, form: form %>
+  <% end  %>
 </div>
