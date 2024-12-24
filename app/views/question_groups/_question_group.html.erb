@@ -1,7 +1,6 @@
-<div id="<%= dom_id question_group %>">
-  <p class="my-5">
-    <strong class="block font-medium mb-1">Title:</strong>
-    <%= question_group.title %>
-  </p>
-
+<div id="<%= dom_id question_group %>" class="flex gap-5 justify-between p-5 rounded border border-gray-100">
+  <%= link_to question_group.title, question_group_path(question_group), class: 'font-medium hover:text-emerald-700' %>
+  <div class="text-gray-500">
+    <%= pluralize(question_group.questions.count, 'question') %>
+  </div>
 </div>

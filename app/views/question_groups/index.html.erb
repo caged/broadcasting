@@ -10,12 +10,9 @@
     <%= link_to "New question group", new_question_group_path, class: "rounded-lg py-3 px-5 bg-blue-600 text-white block font-medium" %>
   </div>
 
-  <div id="question_groups" class="min-w-full">
+  <div id="question_groups" class="min-w-full mt-10">
     <% @question_groups.each do |question_group| %>
       <%= render question_group %>
-      <p>
-        <%= link_to "Show this question group", question_group, class: "ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
-      </p>
     <% end %>
   </div>
 </div>

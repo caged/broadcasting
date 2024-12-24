@@ -1,4 +1,5 @@
 class QuestionsController < ApplicationController
+  before_action :set_question_group, only: %i[ index new edit create ]
   before_action :set_question, only: %i[ show edit update destroy ]
 
   # GET /questions or /questions.json
@@ -22,10 +23,11 @@ class QuestionsController < ApplicationController
   # POST /questions or /questions.json
   def create
     @question = Question.new(question_params)
+    @question.question_group = @question_group
 
     respond_to do |format|
       if @question.save
-        format.html { redirect_to @question, notice: "Question was successfully created." }
+        format.html { redirect_to question_group_path(@question_group), notice: "Question was successfully created." }
         format.json { render :show, status: :created, location: @question }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -63,8 +65,12 @@ class QuestionsController < ApplicationController
       @question = Question.find(params.expect(:id))
     end
 
+    def set_question_group
+      @question_group = QuestionGroup.find(params.expect(:question_group_id))
+    end
+
     # Only allow a list of trusted parameters through.
     def question_params
-      params.expect(question: [ :label, :kind, :value, :question_group_id ])
+      params.expect(question: [ :label, :kind, :value ])
     end
 end
