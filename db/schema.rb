@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2024_12_17_040604) do
+ActiveRecord::Schema[8.0].define(version: 2024_12_19_185155) do
   create_table "articles", force: :cascade do |t|
     t.string "title"
     t.text "body"
@@ -18,4 +18,22 @@ ActiveRecord::Schema[8.0].define(version: 2024_12_17_040604) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
+
+  create_table "question_groups", force: :cascade do |t|
+    t.string "title"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "questions", force: :cascade do |t|
+    t.string "label"
+    t.integer "kind"
+    t.string "value"
+    t.integer "question_group_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["question_group_id"], name: "index_questions_on_question_group_id"
+  end
+
+  add_foreign_key "questions", "question_groups"
 end
