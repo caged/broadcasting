@@ -1,8 +1,18 @@
-<div class="mx-auto md:w-2/3 w-full">
+<div class="mx-auto  w-full">
   <h1 class="font-bold text-4xl">Editing question group</h1>
 
   <%= render "form", question_group: @question_group %>
 
   <%= link_to "Back", question_groups_path, class: "ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
   <%= link_to "Show ", @question_group, class: "ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
+</div>
+
+<div class="mt-10">
+  <%= turbo_stream_from @question_group %>
+  <%= turbo_frame_tag @question_group, src: question_group_questions_path(@question_group) %>
+</div>
+
+<div class="mt-5">
+  <%= turbo_frame_tag dom_id(@question_group, :new_question), 
+    src: new_question_group_question_path(@question_group) %>
 </div>
