@@ -4,7 +4,7 @@ class QuestionsController < ApplicationController
 
   # GET /questions or /questions.json
   def index
-    @questions = Question.all
+    @questions = @question_group.questions
   end
 
   # GET /questions/1 or /questions/1.json
