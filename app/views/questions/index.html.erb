@@ -5,7 +5,8 @@
     <% end %>
 
     <% content_for :title, "Questions" %>
-    <h2 class="font-bold text-2xl">Questions</h2>
+    <h2 class="mb-5 font-bold text-2xl">Questions</h2>
+
     <div id="<%= dom_id(@question_group, :questions) %>" class="space-y-5">
       <% if @questions.any? %>
         <% @questions.each do |question| %>

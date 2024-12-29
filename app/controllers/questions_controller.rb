@@ -29,6 +29,9 @@ class QuestionsController < ApplicationController
     if @question.save
       # There's a bug on form submit.  See https://github.com/hotwired/turbo/issues/1173
       render turbo_stream: turbo_stream.refresh(request_id: nil)
+    else 
+      
+     render turbo_stream: turbo_stream.replace(helpers.dom_id(@question_group, :new_question), partial: 'questions/form', locals: { question: @question }) 
     end
 
     # respond_to do |format|

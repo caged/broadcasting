@@ -8,6 +8,7 @@ class QuestionGroupsController < ApplicationController
 
   # GET /question_groups/1 or /question_groups/1.json
   def show
+    @question = Question.new
   end
 
   # GET /question_groups/new
