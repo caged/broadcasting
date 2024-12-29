@@ -5,14 +5,14 @@
     </svg>
   <% end %>
 
-  <%= form_with model: [@question_group, question] do |form| %>
+  <%= form.fields_for question, index: question.id do |f| %>
     <fieldset>
       <% if question.input_text? %>
-        <%= form.label question.human_label, class: 'block mb-2 font-bold' %>
+        <%= f.label question.human_label, class: 'block mb-2 font-bold', for: f.field_id('value') %>
       <% else %>
         <legend class="font-bold block mb-2"><%= question.human_label %></legend>
       <% end %>
-      <%= render "questions/inputs/#{question.kind}", question: question, form: form %>
+      <%= render "questions/inputs/#{question.kind}", question: question, form: f %>
     </fieldset>
   <% end  %>
 </div>

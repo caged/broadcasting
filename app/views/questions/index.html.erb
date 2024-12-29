@@ -7,14 +7,20 @@
     <% content_for :title, "Questions" %>
     <h2 class="mb-5 font-bold text-2xl">Questions</h2>
 
-    <div id="<%= dom_id(@question_group, :questions) %>" class="space-y-5">
-      <% if @questions.any? %>
-        <% @questions.each do |question| %>
-          <%= render question %>
+    <%= form_with model: @question_group do |form| %>
+      <div id="<%= dom_id(@question_group, :questions) %>" class="space-y-5">
+        <% if @questions.any? %>
+          <% @questions.each do |question| %>
+            <%= render question, form: form %>
+          <% end %>
+        <% else %>
+          <p class="text-gray-500">No questions yet.</p>
         <% end %>
-      <% else %>
-        <p class="text-gray-500">No questions yet.</p>
-      <% end %>
-    </div>
+      </div>
+
+      <div class="flex justify-end py-5">
+        <%= form.submit "Save Answers", class: 'bg-green-600 rounded text-white px-4 py-2' %>
+      </div>
+    <% end %>
   </div>
 <% end %>
