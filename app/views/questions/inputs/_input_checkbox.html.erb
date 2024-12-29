@@ -1,0 +1,9 @@
+<div class="grid grid-flow-col">
+  <% question.choices.each_with_index do |choice, i| %>
+    <% id = %(question-#{question.id}-#{i}) %>
+    <label for="<%= id %>" class="flex gap-1 items-center">
+      <%= form.checkbox :value, {}, choice[1]  %>
+      <span><%= choice[0].capitalize %></span>
+    </label>
+  <% end %>
+</div>
