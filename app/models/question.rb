@@ -4,7 +4,7 @@ class Question < ApplicationRecord
   enum :kind, [ :input_text, :input_select, :input_radio, :input_checkbox ]
 
   validates :label, presence: true
-  validates :value, presence: true, if: -> { input_text? }
+  validates :value, presence: true, if: -> { input_text? && persisted? }
 
   def human_label
     label.split("::").first
