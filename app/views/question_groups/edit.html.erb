@@ -9,7 +9,8 @@
 
 <div class="mt-10">
   <%= turbo_stream_from @question_group %>
-  <%= turbo_frame_tag @question_group, src: question_group_questions_path(@question_group) %>
+  <%= turbo_frame_tag dom_id(@question_group, :questions), 
+    src: question_group_questions_path(@question_group, edit: true) %>
 </div>
 
 <div class="mt-5">
