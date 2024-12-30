@@ -4,7 +4,6 @@ class QuestionsController < ApplicationController
 
   # GET /questions or /questions.json
   def index
-    @questions = @question_group.questions.order(:created_at)
   end
 
   # GET /questions/1 or /questions/1.json

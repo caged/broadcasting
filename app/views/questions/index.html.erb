@@ -15,6 +15,9 @@
         <% if @question_group.questions.any? %>
           <% @question_group.questions.each do |question| %>
             <%= render question, form: form %>
+            <% if question.value == 'MAGICWORD' %>
+              <p class="bg-gray-50 p-2.5 rounded">Magic stuff here</p>
+            <% end %>
           <% end %>
         <% else %>
           <p class="text-gray-500">No questions yet.</p>
