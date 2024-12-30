@@ -4,7 +4,7 @@ class QuestionsController < ApplicationController
 
   # GET /questions or /questions.json
   def index
-    @questions = @question_group.questions
+    @questions = @question_group.questions.order(:created_at)
   end
 
   # GET /questions/1 or /questions/1.json
@@ -25,13 +25,13 @@ class QuestionsController < ApplicationController
     @question = Question.new(question_params)
     @question.question_group = @question_group
 
-    
+
     if @question.save
       # There's a bug on form submit.  See https://github.com/hotwired/turbo/issues/1173
       render turbo_stream: turbo_stream.refresh(request_id: nil)
-    else 
-      
-     render turbo_stream: turbo_stream.replace(helpers.dom_id(@question_group, :new_question), partial: 'questions/form', locals: { question: @question }) 
+    else
+
+     render turbo_stream: turbo_stream.replace(helpers.dom_id(@question_group, :new_question), partial: "questions/form", locals: { question: @question })
     end
 
     # respond_to do |format|

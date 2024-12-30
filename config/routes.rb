@@ -1,6 +1,9 @@
 Rails.application.routes.draw do
   resources :question_groups do
     resources :questions
+    member do
+      patch :save_answers
+    end
   end
   # resources :articles
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html

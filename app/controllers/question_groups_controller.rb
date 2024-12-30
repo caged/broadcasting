@@ -1,5 +1,5 @@
 class QuestionGroupsController < ApplicationController
-  before_action :set_question_group, only: %i[ show edit update destroy ]
+  before_action :set_question_group, only: %i[ show edit update destroy save_answers ]
 
   # GET /question_groups or /question_groups.json
   def index
@@ -46,6 +46,20 @@ class QuestionGroupsController < ApplicationController
         format.json { render json: @question_group.errors, status: :unprocessable_entity }
       end
     end
+  end
+
+  def save_answers
+    question_params = params.dig("question_group", "question")
+
+    @question_group.questions.each do |question|
+      question.value = question_params[question.id.to_s]["value"]
+      question.save
+    end
+
+    render turbo_stream: turbo_stream.replace(
+        helpers.dom_id(@question_group, :questions),
+        template: "questions/index",
+        locals: { question_group: @question_group })
   end
 
   # DELETE /question_groups/1 or /question_groups/1.json
