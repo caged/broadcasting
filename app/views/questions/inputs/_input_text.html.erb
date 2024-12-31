@@ -3,4 +3,4 @@
     'border-red-500': question.errors.any?
   }
  %>
-<%= form.text_field :value, class: "rounded-md bg-gray-50 border-gray-300 w-full text-gray-700 #{class_names(optional_classes)}" %>
+<%= form.text_field :value, required: true, class: "rounded-md bg-gray-50 border-gray-300 w-full text-gray-700 #{class_names(optional_classes)}" %>
