@@ -1,9 +1,10 @@
 <div class="grid grid-flow-col">
-  <% question.choices.each_with_index do |choice, i| %>
-    <% id = %(question-#{question.id}-#{i}) %>
-    <label for="<%= id %>" class="flex gap-1 items-center">
-      <%= form.checkbox :value, {id: id}, choice[1]  %>
-      <span><%= choice[0].capitalize %></span>
-    </label>
+  <%= values = JSON.parse(question.value).compact_blank %>
+  <%= form.collection_checkboxes :value, question.choices, lambda {|o| o.first }, :last do |c| %>
+    <div>
+      <%= c.check_box %>
+      <%= c.label %>
+    </div>
   <% end %>
+
 </div>
