@@ -1,4 +1,4 @@
-<%= turbo_frame_tag dom_id(@question_group, :questions) do %>
+<%= turbo_frame_tag dom_id(@question_group, :questions), refresh: :morph do %>
   <div class="w-full">
     <% if notice.present? %>
       <p class="py-2 px-3 bg-green-50 mb-5 text-green-500 font-medium rounded-lg inline-block" id="notice"><%= notice %></p>
@@ -10,7 +10,7 @@
     <%= form_with model: @question_group, 
                   url: save_answers_question_group_path(@question_group), 
                   method: :patch,
-                  data: { controller: "liveform" } do |form| %>
+                  data: { controller: "foo" } do |form| %>
       <div class="space-y-5">
         <% if @question_group.questions.any? %>
           <% @question_group.questions.each do |question| %>
