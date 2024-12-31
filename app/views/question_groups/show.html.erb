@@ -13,4 +13,4 @@
 </div>
 
 <%= turbo_stream_from @question_group %>
-<%= turbo_frame_tag dom_id(@question_group, :questions), async: true, src: question_group_questions_path(@question_group) %>
+<%= turbo_frame_tag dom_id(@question_group, :questions), async: true, src: question_group_questions_path(@question_group), refresh: :morph %>
