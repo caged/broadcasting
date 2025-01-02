@@ -10,7 +10,7 @@
     <%= form_with model: @question_group, 
                   url: save_answers_question_group_path(@question_group), 
                   method: :patch,
-                  data: { controller: "foo" } do |form| %>
+                  data: { controller: "liveform" } do |form| %>
       <div class="space-y-5">
         <% if @question_group.questions.any? %>
           <% @question_group.questions.each do |question| %>
