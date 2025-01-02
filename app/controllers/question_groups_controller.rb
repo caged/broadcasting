@@ -52,7 +52,7 @@ class QuestionGroupsController < ApplicationController
     question_params = params.dig("question_group", "question")
 
     @question_group.questions.each do |question|
-      question.value = question_params[question.id.to_s]["value"]
+      question.value = question_params.dig(question.id.to_s,  "value")
       question.save
     end
 
